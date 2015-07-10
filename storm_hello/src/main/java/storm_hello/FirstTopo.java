@@ -15,7 +15,7 @@ public class FirstTopo
     {
     	TopologyBuilder builder = new TopologyBuilder();   
         builder.setSpout("StocksSpout", new StocksSpout()).setNumTasks(5);  
-        builder.setSpout("DealDetailSpout", new DealDetailSpout(redisHost, redisPort)).setNumTasks(5);
+        builder.setSpout("DealDetailSpout", new JedisSpout(redisHost, redisPort)).setNumTasks(5);
         
         builder.setBolt("StrategeBolt", new StrategeBolt()).shuffleGrouping("StocksSpout").shuffleGrouping("DealDetailSpout").setNumTasks(5); 
         builder.setBolt("StockServerBolt", new StockServerBolt()).shuffleGrouping("StrategeBolt").setNumTasks(5);

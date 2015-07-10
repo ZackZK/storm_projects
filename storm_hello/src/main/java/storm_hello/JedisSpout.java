@@ -11,14 +11,14 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
 
 
-public class DealDetailSpout extends BaseRichSpout {
+public class JedisSpout extends BaseRichSpout {
 	private SpoutOutputCollector _collector;
 	private Jedis jedis;
 	private String host;
 	private int port;
 	private final String key = "tradeResult";
 
-	public DealDetailSpout(String host, int port) {
+	public JedisSpout(String host, int port) {
 		this.host = host;
 		this.port = port;
 	}
