@@ -14,10 +14,10 @@ public class FirstTopo
     public static void main( String[] args ) throws Exception
     {
     	TopologyBuilder builder = new TopologyBuilder();   
-        builder.setSpout("spout", new String1024Spout()).setNumTasks(5);  
+        builder.setSpout("StocksSpout", new StocksSpout()).setNumTasks(5);  
         builder.setSpout("DealDetailSpout", new DealDetailSpout(redisHost, redisPort)).setNumTasks(5);
         
-        builder.setBolt("StrategeBolt", new StrategeBolt()).shuffleGrouping("spout").shuffleGrouping("DealDetailSpout").setNumTasks(5); 
+        builder.setBolt("StrategeBolt", new StrategeBolt()).shuffleGrouping("StocksSpout").shuffleGrouping("DealDetailSpout").setNumTasks(5); 
         builder.setBolt("StockServerBolt", new StockServerBolt()).shuffleGrouping("StrategeBolt").setNumTasks(5);
         builder.setBolt("TradeDBPubBolt", new TradeDBPubBolt(redisHost, redisPort)).shuffleGrouping("StockServerBolt").setNumTasks(5);
         

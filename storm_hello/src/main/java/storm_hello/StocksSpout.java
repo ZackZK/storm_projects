@@ -11,7 +11,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
 import backtype.storm.utils.Utils;
 
-public class String1024Spout extends BaseRichSpout {
+public class StocksSpout extends BaseRichSpout {
 	 private SpoutOutputCollector collector;
 	 //private static String[] words = {"happy","excited","angry"};
 	 //private static String[] words = new String[10];
